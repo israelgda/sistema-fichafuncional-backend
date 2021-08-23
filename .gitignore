@@ -12,7 +12,7 @@ target/
 .settings
 .springBeans
 .sts4-cache
-/sistema-fichafuncional-webservice/src/main/resources/
+sistema-fichafuncional-webservice/src/main/resources/
 
 ### IntelliJ IDEA ###
 .idea
