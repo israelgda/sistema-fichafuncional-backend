@@ -3,11 +3,15 @@ package com.sefaz.sistemaficha.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.sefaz.sistemaficha.entities.Dependente;
 import com.sefaz.sistemaficha.repositories.DependenteRepository;
+import com.sefaz.sistemaficha.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class DependenteService {
@@ -22,7 +26,7 @@ public class DependenteService {
 	
 	public Dependente findById(Integer id) {
 		Optional<Dependente> dependente = repository.findById(id);
-		return dependente.get();
+		return dependente.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public Dependente create(Dependente dependente) {
@@ -31,15 +35,23 @@ public class DependenteService {
 	}
 	
 	public Dependente update(Integer id, Dependente dependente) {
-		Dependente dependenteAtualizado = findById(id);
-		
-		/* Atualizando Dependente através do método local 'updateDependente' */
-		dependenteAtualizado = updateDependente(dependente, dependenteAtualizado);
-		return repository.save(dependenteAtualizado);
+		try {
+			Dependente dependenteAtualizado = findById(id);
+			
+			/* Atualizando Dependente através do método local 'updateDependente' */
+			dependenteAtualizado = updateDependente(dependente, dependenteAtualizado);
+			return repository.save(dependenteAtualizado);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
 	}
 	
 	public void delete(Integer id) {
-		repository.deleteById(id);
+		try {
+			repository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException(id);
+		}
 	}
 	
 	public Dependente updateDependente(Dependente dependente, Dependente dependenteAtualizado) {

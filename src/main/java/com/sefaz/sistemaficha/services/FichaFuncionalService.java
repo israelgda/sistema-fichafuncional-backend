@@ -3,11 +3,15 @@ package com.sefaz.sistemaficha.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.sefaz.sistemaficha.entities.FichaFuncional;
 import com.sefaz.sistemaficha.repositories.FichaFuncionalRepository;
+import com.sefaz.sistemaficha.services.exceptions.ResourceNotFoundException;
 
 
 @Service
@@ -23,7 +27,7 @@ public class FichaFuncionalService {
 
 	public FichaFuncional findById(Integer id) {
 		Optional<FichaFuncional> ficha = repository.findById(id);
-		return ficha.get();
+		return ficha.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
 	public FichaFuncional create(FichaFuncional ficha) {
@@ -31,15 +35,23 @@ public class FichaFuncionalService {
 	}
 
 	public FichaFuncional update(Integer id, FichaFuncional ficha) {
-		FichaFuncional fichaAtualizada = findById(id);
+		try {
+			FichaFuncional fichaAtualizada = findById(id);
 
-		/* Atualizando Ficha através do método local 'updateFicha' */
-		fichaAtualizada = updateFicha(ficha, fichaAtualizada);
-		return repository.save(fichaAtualizada);
+			/* Atualizando Ficha através do método local 'updateFicha' */
+			fichaAtualizada = updateFicha(ficha, fichaAtualizada);
+			return repository.save(fichaAtualizada);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
 	}
 
 	public void delete(Integer id) {
-		repository.deleteById(id);
+		try {
+			repository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundException(id);
+		}
 	}
 	
 	private FichaFuncional updateFicha(FichaFuncional ficha, FichaFuncional fichaAtualizada) {
