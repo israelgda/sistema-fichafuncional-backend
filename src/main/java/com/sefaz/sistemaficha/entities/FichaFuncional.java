@@ -95,7 +95,7 @@ public class FichaFuncional implements Serializable {
 	private Set<Anotacao> anotacoes = new HashSet<>();
 	
 	@ManyToMany
-	@JoinTable(name = "tb_ficha_dependente", joinColumns = @JoinColumn(name = "idfichafuncional"), inverseJoinColumns = @JoinColumn(name = "iddepenente"))
+	@JoinTable(name = "tb_ficha_dependente", joinColumns = @JoinColumn(name = "idfichafuncional"), inverseJoinColumns = @JoinColumn(name = "iddependente"))
 	private Set<Dependente> dependentes = new HashSet<>();
 	
 	
