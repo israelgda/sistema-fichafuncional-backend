@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.sefaz.sistemaficha.entities.Dependente;
 
 @Repository
-public interface DependenteRepository extends JpaRepository<Dependente, Integer>{
+public interface DependenteRepository extends JpaRepository<Dependente, Long>{
 
 }

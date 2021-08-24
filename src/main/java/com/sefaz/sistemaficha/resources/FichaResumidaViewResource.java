@@ -26,13 +26,13 @@ public class FichaResumidaViewResource {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<FichaResumidaView> findById(@PathVariable Integer id){
+	public ResponseEntity<FichaResumidaView> findById(@PathVariable Long id){
 		FichaResumidaView ficha = service.findById(id);
 		return ResponseEntity.ok().body(ficha);
 	}
 	
 	@GetMapping(value = "/poranotacao/{id}")
-	public ResponseEntity<List<FichaResumidaView>> findAllPorAnotacaoId(@PathVariable Integer id){
+	public ResponseEntity<List<FichaResumidaView>> findAllPorAnotacaoId(@PathVariable Long id){
 		List<FichaResumidaView> list = service.findAllPorAnotacaoId(id);
 		return ResponseEntity.ok().body(list);
 	}

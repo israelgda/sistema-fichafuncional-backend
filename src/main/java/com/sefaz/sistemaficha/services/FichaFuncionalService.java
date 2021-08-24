@@ -25,7 +25,7 @@ public class FichaFuncionalService {
 		return list;
 	}
 
-	public FichaFuncional findById(Integer id) {
+	public FichaFuncional findById(Long id) {
 		Optional<FichaFuncional> ficha = repository.findById(id);
 		return ficha.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
@@ -34,7 +34,7 @@ public class FichaFuncionalService {
 		return repository.save(ficha);
 	}
 
-	public FichaFuncional update(Integer id, FichaFuncional ficha) {
+	public FichaFuncional update(Long id, FichaFuncional ficha) {
 		try {
 			FichaFuncional fichaAtualizada = findById(id);
 
@@ -46,7 +46,7 @@ public class FichaFuncionalService {
 		}
 	}
 
-	public void delete(Integer id) {
+	public void delete(Long id) {
 		try {
 			repository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {

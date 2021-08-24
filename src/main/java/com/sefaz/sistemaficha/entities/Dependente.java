@@ -22,7 +22,7 @@ public class Dependente implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "iddependente")
-	private Integer id;
+	private Long id;
 	
 	@Column(name = "nome")
 	private String nome;
@@ -52,7 +52,7 @@ public class Dependente implements Serializable{
 		super();
 	}
 
-	public Dependente(Integer id, String nome, String parentesco, String numCpf, String numRegistroCivil,
+	public Dependente(Long id, String nome, String parentesco, String numCpf, String numRegistroCivil,
 			String sexo, Date dataNascimento) {
 		super();
 		this.id = id;
@@ -113,7 +113,7 @@ public class Dependente implements Serializable{
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 

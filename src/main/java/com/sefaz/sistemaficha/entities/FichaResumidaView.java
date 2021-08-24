@@ -18,10 +18,10 @@ public class FichaResumidaView implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private Integer id;
+	private Long id;
 	
 	@Column(name = "matricula", nullable = false)
-	private Integer matricula;
+	private Long matricula;
 
 	@Column(name = "nome_servidor", nullable = false)
 	private String nome;
@@ -37,7 +37,7 @@ public class FichaResumidaView implements Serializable {
 		super();
 	}
 
-	public FichaResumidaView(Integer id, Integer matricula, String nome, String cargo, String lotacao) {
+	public FichaResumidaView(Long id, Long matricula, String nome, String cargo, String lotacao) {
 		super();
 		this.id = id;
 		this.matricula = matricula;
@@ -49,19 +49,19 @@ public class FichaResumidaView implements Serializable {
 
 	// Getters e Setters
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public Integer getMatricula() {
+	public Long getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(Integer matricula) {
+	public void setMatricula(Long matricula) {
 		this.matricula = matricula;
 	}
 

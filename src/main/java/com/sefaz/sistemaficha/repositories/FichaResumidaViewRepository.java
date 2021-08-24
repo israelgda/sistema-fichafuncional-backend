@@ -9,12 +9,12 @@ import org.springframework.stereotype.Repository;
 import com.sefaz.sistemaficha.entities.FichaResumidaView;
 
 @Repository
-public interface FichaResumidaViewRepository extends JpaRepository<FichaResumidaView, Integer>{
+public interface FichaResumidaViewRepository extends JpaRepository<FichaResumidaView, Long>{
 	
 	@Query(value = "SELECT * FROM v_listar_fichas", nativeQuery = true)
 	List<FichaResumidaView> findAllFichas();
 	
 	@Query(value = "CALL sp_filtra_fichas_por_anotacao(:id)", nativeQuery=true)
-	List<FichaResumidaView> findAllPorAnotacaoId(Integer id);
+	List<FichaResumidaView> findAllPorAnotacaoId(Long id);
 
 }

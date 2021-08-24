@@ -33,7 +33,7 @@ public class FichaFuncionalResource {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<FichaFuncional> findById(@PathVariable Integer id){
+	public ResponseEntity<FichaFuncional> findById(@PathVariable Long id){
 		FichaFuncional ficha = service.findById(id);
 		return ResponseEntity.ok().body(ficha);
 	}
@@ -46,13 +46,13 @@ public class FichaFuncionalResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<FichaFuncional> update(@PathVariable Integer id, @RequestBody FichaFuncional ficha){
+	public ResponseEntity<FichaFuncional> update(@PathVariable Long id, @RequestBody FichaFuncional ficha){
 		FichaFuncional fichaAtualizada = service.update(id, ficha);
 		return ResponseEntity.ok().body(fichaAtualizada);
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Integer id){
+	public ResponseEntity<Void> delete(@PathVariable Long id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}

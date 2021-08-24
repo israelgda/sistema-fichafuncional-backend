@@ -32,7 +32,7 @@ public class DependenteResource {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Dependente> findById(@PathVariable Integer id){
+	public ResponseEntity<Dependente> findById(@PathVariable Long id){
 		Dependente dependente = service.findById(id);
 		return ResponseEntity.ok().body(dependente);
 	}
@@ -45,13 +45,13 @@ public class DependenteResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Dependente> update(@PathVariable Integer id, @RequestBody Dependente dependente){
+	public ResponseEntity<Dependente> update(@PathVariable Long id, @RequestBody Dependente dependente){
 		Dependente dependenteAtualizado = service.update(id, dependente);
 		return ResponseEntity.ok().body(dependenteAtualizado);
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Integer id){
+	public ResponseEntity<Void> delete(@PathVariable Long id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}

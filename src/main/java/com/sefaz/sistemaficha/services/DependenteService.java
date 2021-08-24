@@ -24,7 +24,7 @@ public class DependenteService {
 		return list;
 	}
 	
-	public Dependente findById(Integer id) {
+	public Dependente findById(Long id) {
 		Optional<Dependente> dependente = repository.findById(id);
 		return dependente.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
@@ -34,7 +34,7 @@ public class DependenteService {
 		return dependente;
 	}
 	
-	public Dependente update(Integer id, Dependente dependente) {
+	public Dependente update(Long id, Dependente dependente) {
 		try {
 			Dependente dependenteAtualizado = findById(id);
 			
@@ -46,7 +46,7 @@ public class DependenteService {
 		}
 	}
 	
-	public void delete(Integer id) {
+	public void delete(Long id) {
 		try {
 			repository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {

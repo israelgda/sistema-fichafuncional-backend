@@ -22,7 +22,7 @@ public class Anotacao implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idanotacao", nullable = false)
-	private Integer id;
+	private Long id;
 	
 	@Column(name = "descricao", nullable = false)
 	private String descricao;
@@ -42,7 +42,7 @@ public class Anotacao implements Serializable{
 		super();
 	}
 	
-	public Anotacao(Integer id, String descricao, String tipo, Date dataAnotacao) {
+	public Anotacao(Long id, String descricao, String tipo, Date dataAnotacao) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
@@ -51,11 +51,11 @@ public class Anotacao implements Serializable{
 	}
 
 	//Getters and Setters
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

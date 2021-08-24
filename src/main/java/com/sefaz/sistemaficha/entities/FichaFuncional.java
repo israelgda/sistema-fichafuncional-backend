@@ -24,7 +24,7 @@ public class FichaFuncional implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idfichafuncional")
-	private Integer id;
+	private Long id;
 
 	@Column(name = "nome", nullable = false)
 	private String nome;
@@ -66,10 +66,10 @@ public class FichaFuncional implements Serializable {
 	private Date dataNascimento;
 
 	@Column(name = "num_ordem", nullable = false)
-	private Integer numOrdem;
+	private Long numOrdem;
 
 	@Column(name = "num_matricula", nullable = false)
-	private Integer numMatricula;
+	private Long numMatricula;
 
 	@Column(name = "cargo", nullable = false)
 	private String cargo;
@@ -104,9 +104,9 @@ public class FichaFuncional implements Serializable {
 		super();
 	}
 
-	public FichaFuncional(Integer id, String nome, String nomePai, String nomeMae, String nomeConjuge, String cep,
+	public FichaFuncional(Long id, String nome, String nomePai, String nomeMae, String nomeConjuge, String cep,
 			String endereco, String municipio, String telefone, String numTituloEleitor, String numIdentidade,
-			String numCpf, String numPisPasep, Date dataNascimento, Integer numOrdem, Integer numMatricula,
+			String numCpf, String numPisPasep, Date dataNascimento, Long numOrdem, Long numMatricula,
 			String cargo, String lotacao, Date dataNomeacao, Date dataPosse, String grauInstrucao, String curso) {
 		super();
 		this.id = id;
@@ -135,11 +135,11 @@ public class FichaFuncional implements Serializable {
 
 	// Getters e Setters
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -247,19 +247,19 @@ public class FichaFuncional implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public Integer getNumOrdem() {
+	public Long getNumOrdem() {
 		return numOrdem;
 	}
 
-	public void setNumOrdem(Integer numOrdem) {
+	public void setNumOrdem(Long numOrdem) {
 		this.numOrdem = numOrdem;
 	}
 
-	public Integer getNumMatricula() {
+	public Long getNumMatricula() {
 		return numMatricula;
 	}
 
-	public void setNumMatricula(Integer numMatricula) {
+	public void setNumMatricula(Long numMatricula) {
 		this.numMatricula = numMatricula;
 	}
 
