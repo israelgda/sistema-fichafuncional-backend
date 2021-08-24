@@ -29,6 +29,14 @@ public class DependenteService {
 		return dependente.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
+	public List<Dependente> findAllPorFichaId(Long id){
+		try {
+			List<Dependente> list = repository.findAllPorFichaId(id);
+			return list;
+		} catch (ResourceNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
+	}
 	public Dependente create(Dependente dependente) {
 		dependente = repository.save(dependente);
 		return dependente;

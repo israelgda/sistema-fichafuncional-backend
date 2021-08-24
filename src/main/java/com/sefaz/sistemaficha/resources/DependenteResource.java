@@ -37,6 +37,12 @@ public class DependenteResource {
 		return ResponseEntity.ok().body(dependente);
 	}
 	
+	@GetMapping(value = "/porfichafuncional/{id}")
+	public ResponseEntity<List<Dependente>> findAllPorFichaId(@PathVariable Long id){
+		List<Dependente> list = service.findAllPorFichaId(id);
+		return ResponseEntity.ok().body(list);
+	}
+	
 	@PostMapping
 	public ResponseEntity<Dependente> create(@RequestBody Dependente dependente){
 		dependente = service.create(dependente);
