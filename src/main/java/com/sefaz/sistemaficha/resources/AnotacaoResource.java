@@ -39,6 +39,12 @@ public class AnotacaoResource {
 		return ResponseEntity.ok().body(anotacao);
 	}
 	
+	@GetMapping(value = "/porficha/{id}")
+	public ResponseEntity<List<Anotacao>> findAllByIdFicha(@PathVariable Long id){
+		List<Anotacao> list = service.findAllByIdFicha(id);
+		return ResponseEntity.ok().body(list);
+	}
+	
 	@PostMapping
 	public ResponseEntity<Anotacao> create(@RequestBody Anotacao anotacao){
 		anotacao = service.create(anotacao);

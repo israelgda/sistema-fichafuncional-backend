@@ -26,6 +26,11 @@ public class AnotacaoService {
 		return anotacao.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
+	public List<Anotacao> findAllByIdFicha(Long id){
+		List<Anotacao> list = repository.findAllByIdFicha(id);
+		return list;
+	}
+	
 	public Anotacao create(Anotacao anotacao) {
 		anotacao = repository.save(anotacao);
 		return anotacao;
