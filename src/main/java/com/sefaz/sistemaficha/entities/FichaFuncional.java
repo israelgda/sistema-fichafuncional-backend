@@ -89,6 +89,9 @@ public class FichaFuncional implements Serializable {
 	@Column(name = "formacao", nullable = true)
 	private String curso;
 	
+	@Column(name = "status_ficha", nullable = false)
+	private String status;
+	
 	@ManyToMany
 	@JoinTable(name = "tb_ficha_anotacao", joinColumns = @JoinColumn(name = "idfichafuncional"), inverseJoinColumns = @JoinColumn(name = "idanotacao"))
 	//Associations
@@ -107,7 +110,7 @@ public class FichaFuncional implements Serializable {
 	public FichaFuncional(Long id, String nome, String nomePai, String nomeMae, String nomeConjuge, String cep,
 			String endereco, String municipio, String telefone, String numTituloEleitor, String numIdentidade,
 			String numCpf, String numPisPasep, Date dataNascimento, Long numOrdem, Long numMatricula,
-			String cargo, String lotacao, Date dataNomeacao, Date dataPosse, String grauInstrucao, String curso) {
+			String cargo, String lotacao, Date dataNomeacao, Date dataPosse, String grauInstrucao, String curso, String status) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -131,6 +134,7 @@ public class FichaFuncional implements Serializable {
 		this.dataPosse = dataPosse;
 		this.grauInstrucao = grauInstrucao;
 		this.curso = curso;
+		this.status = status;
 	}
 
 	// Getters e Setters
@@ -317,6 +321,14 @@ public class FichaFuncional implements Serializable {
 
 	public void setAnotacoes(Set<Anotacao> anotacoes) {
 		this.anotacoes = anotacoes;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	//HashCode e Equals
