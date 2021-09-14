@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +15,11 @@ import com.sefaz.sistemaficha.services.exceptions.ResourceNotFoundException;
 @Service
 public class DependenteService {
 
-	@Autowired
-	private DependenteRepository repository;
+	private final DependenteRepository repository;
+	
+	public DependenteService(DependenteRepository repository) {
+		this.repository = repository;
+	}
 	
 	public List<Dependente> findAll(){
 		List<Dependente> list = repository.findAll();

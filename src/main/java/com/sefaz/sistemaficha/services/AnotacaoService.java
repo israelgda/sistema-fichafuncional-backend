@@ -3,7 +3,6 @@ package com.sefaz.sistemaficha.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sefaz.sistemaficha.entities.Anotacao;
@@ -13,8 +12,11 @@ import com.sefaz.sistemaficha.services.exceptions.ResourceNotFoundException;
 @Service
 public class AnotacaoService {
 
-	@Autowired
-	private AnotacaoRepository repository;
+	private final AnotacaoRepository repository;
+	
+	public AnotacaoService(AnotacaoRepository repository) {
+		this.repository = repository;
+	}
 	
 	public List<Anotacao> findAll(){
 		List<Anotacao> list = repository.findAll();

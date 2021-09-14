@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +16,11 @@ import com.sefaz.sistemaficha.services.exceptions.ResourceNotFoundException;
 @Service
 public class FichaFuncionalService {
 
-	@Autowired
-	private FichaFuncionalRepository repository;
+	private final FichaFuncionalRepository repository;
+	
+	public FichaFuncionalService(FichaFuncionalRepository repository) {
+		this.repository = repository;
+	}
 
 	public List<FichaFuncional> findAll() {
 		List<FichaFuncional> list = repository.findAll();

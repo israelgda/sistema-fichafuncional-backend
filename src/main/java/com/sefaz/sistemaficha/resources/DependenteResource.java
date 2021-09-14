@@ -3,7 +3,6 @@ package com.sefaz.sistemaficha.resources;
 import java.net.URI;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +21,11 @@ import com.sefaz.sistemaficha.services.DependenteService;
 @RequestMapping(value = "/dependentes")
 public class DependenteResource {
 
-	@Autowired
-	private DependenteService service;
+	private final DependenteService service;
+	
+	public DependenteResource(DependenteService service) {
+		this.service = service;
+	}
 	
 	@GetMapping
 	public ResponseEntity<List<Dependente>> findAll(){

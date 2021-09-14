@@ -3,7 +3,6 @@ package com.sefaz.sistemaficha.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sefaz.sistemaficha.entities.FichaResumidaView;
@@ -13,8 +12,11 @@ import com.sefaz.sistemaficha.services.exceptions.ResourceNotFoundException;
 @Service
 public class FichaResumidaViewService {
 
-	@Autowired
-	private FichaResumidaViewRepository repository;
+	private final FichaResumidaViewRepository repository;
+	
+	public FichaResumidaViewService(FichaResumidaViewRepository repository) {
+		this.repository = repository;
+	}
 
 	public List<FichaResumidaView> findAll() {
 		List<FichaResumidaView> list = repository.findAllFichas();

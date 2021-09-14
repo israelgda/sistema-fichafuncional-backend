@@ -15,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_fichafuncional")
 public class FichaFuncional implements Serializable {
@@ -92,11 +94,13 @@ public class FichaFuncional implements Serializable {
 	@Column(name = "status_ficha", nullable = false)
 	private String status;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "tb_ficha_anotacao", joinColumns = @JoinColumn(name = "idfichafuncional"), inverseJoinColumns = @JoinColumn(name = "idanotacao"))
 	//Associations
 	private Set<Anotacao> anotacoes = new HashSet<>();
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "tb_ficha_dependente", joinColumns = @JoinColumn(name = "idfichafuncional"), inverseJoinColumns = @JoinColumn(name = "iddependente"))
 	private Set<Dependente> dependentes = new HashSet<>();
