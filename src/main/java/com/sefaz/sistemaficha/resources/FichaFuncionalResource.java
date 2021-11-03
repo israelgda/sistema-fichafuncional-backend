@@ -4,7 +4,6 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,21 +27,18 @@ public class FichaFuncionalResource {
 		this.service = service;
 	}
 	
-	@CrossOrigin(exposedHeaders="Access-Control-Allow-Origin")
 	@GetMapping
 	public ResponseEntity<List<FichaFuncional>> findAll(){
 		List<FichaFuncional> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
-	@CrossOrigin(exposedHeaders="Access-Control-Allow-Origin")
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<FichaFuncional> findById(@PathVariable Long id){
 		FichaFuncional ficha = service.findById(id);
 		return ResponseEntity.ok().body(ficha);
 	}
 	
-	@CrossOrigin(exposedHeaders="Access-Control-Allow-Origin")
 	@PostMapping
 	public ResponseEntity<FichaFuncional> create(@RequestBody FichaFuncional ficha){
 		ficha = service.create(ficha);
@@ -50,14 +46,12 @@ public class FichaFuncionalResource {
 		return ResponseEntity.created(uri).body(ficha);
 	}
 	
-	@CrossOrigin(exposedHeaders="Access-Control-Allow-Origin")
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<FichaFuncional> update(@PathVariable Long id, @RequestBody FichaFuncional ficha){
 		FichaFuncional fichaAtualizada = service.update(id, ficha);
 		return ResponseEntity.ok().body(fichaAtualizada);
 	}
 	
-	@CrossOrigin(exposedHeaders="Access-Control-Allow-Origin")
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id){
 		service.delete(id);
