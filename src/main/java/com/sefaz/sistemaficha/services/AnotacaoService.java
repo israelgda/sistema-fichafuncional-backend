@@ -3,6 +3,8 @@ package com.sefaz.sistemaficha.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sefaz.sistemaficha.entities.Anotacao;
@@ -18,8 +20,8 @@ public class AnotacaoService {
 		this.repository = repository;
 	}
 	
-	public List<Anotacao> findAll(){
-		List<Anotacao> list = repository.findAll();
+	public Page<Anotacao> findAll(Pageable pageable){
+		Page<Anotacao> list = repository.findAll(pageable);
 		return list;
 	}
 	

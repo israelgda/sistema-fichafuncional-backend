@@ -3,6 +3,8 @@ package com.sefaz.sistemaficha.resources;
 import java.net.URI;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +32,8 @@ public class AnotacaoResource {
 	//	IMPLEMENTAÇÃO DO CRUD
 
 	@GetMapping
-	public ResponseEntity<List<Anotacao>> findAll(){
-		List<Anotacao> list = service.findAll();
+	public ResponseEntity<Page<Anotacao>> findAll(Pageable pageable){
+		Page<Anotacao> list = service.findAll(pageable);
 		return ResponseEntity.ok().body(list);
 	}
 	

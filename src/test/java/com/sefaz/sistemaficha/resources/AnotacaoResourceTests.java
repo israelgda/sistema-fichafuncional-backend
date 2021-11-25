@@ -6,10 +6,13 @@ import com.sefaz.sistemaficha.services.AnotacaoService;
 import com.sefaz.sistemaficha.services.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -38,17 +41,19 @@ public class AnotacaoResourceTests {
     private Long nonExistingId;
     private List list;
     private Anotacao anotacao;
+    private PageImpl<Anotacao> page;
 
     @BeforeEach
     void setUp(){
         existingId = 6L;
         nonExistingId = 498L;
         anotacao = new Anotacao(1L, "teste", "FÉRIAS", new Date());
+        page = new PageImpl<>(List.of(anotacao));
         List<Anotacao> list = new ArrayList<>(List.of(anotacao));
 
         Mockito.when(service
-                .findAll())
-                .thenReturn(list);
+                .findAll((Pageable)ArgumentMatchers.any()))
+                .thenReturn(page);
 
         Mockito.when(service
                 .findById(existingId))
@@ -61,16 +66,13 @@ public class AnotacaoResourceTests {
     }
 
     @Test
-    public void findAllShouldReturnList() throws Exception {
+    public void findAllShouldReturnPage() throws Exception {
 
         ResultActions result =
                 mockMvc.perform(get("/anotacoes")
                         .accept(MediaType.APPLICATION_JSON));
 
         result.andExpect(status().isOk());
-        result.andExpect(jsonPath("$[0].['id']").exists());
-        result.andExpect(jsonPath("$[0].['descricao']").exists());
-        result.andExpect(jsonPath("$[0].['tipo']").exists());
     }
 
     @Test
